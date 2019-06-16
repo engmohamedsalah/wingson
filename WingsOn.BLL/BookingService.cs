@@ -12,6 +12,8 @@ namespace WingsOn.BLL
     {
        
         BookingRepositoryExtension _bookingRepository;
+        
+      
 
         public BookingService(BookingRepositoryExtension bookingRepository)
             : base(bookingRepository)
@@ -19,7 +21,21 @@ namespace WingsOn.BLL
 
             _bookingRepository = bookingRepository;
         }
+        /// <summary>
+        /// Creates new Booking with specified flight number and new Person.
+        /// </summary>
+        /// <param name="FlightNumber">The flight number.</param>
+        /// <param name="Person">The person.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Booking Create(string FlightNumber, Person Person)
+        {
+            //check if the Flight Exist
 
+            return null;
+           
+            
+        }
 
         public Booking GetById(int Id)
         {
@@ -28,13 +44,25 @@ namespace WingsOn.BLL
 
         public IEnumerable<Person> GetPassengersByGender(GenderType gender)
         {
-            
-            return _bookingRepository.GetPassengersByGender(gender);
+            var passengers = _bookingRepository.GetAll().SelectMany(a => a.Passengers)
+                                      .Where(a => a.Gender == gender).Distinct();
+
+
+            return passengers.AsQueryable();
+
+            //return _bookingRepository.GetPassengersByGender(gender);
         }
 
         public IEnumerable<Person> GetPassengersInFlight(string flightNumber)
         {
-            return _bookingRepository.GetPassengersInFlight(flightNumber);
+            var passengers = from rep in _bookingRepository.GetAll()
+                             where rep.Flight.Number == flightNumber
+                             select rep.Passengers;
+
+            return passengers.SelectMany(a => a).AsQueryable();
+
+
+            //return _bookingRepository.GetPassengersInFlight(flightNumber);
         }
     }
 }

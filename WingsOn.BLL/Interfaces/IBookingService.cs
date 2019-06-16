@@ -9,7 +9,9 @@ namespace WingsOn.BLL
         Booking GetById(int Id);
 
         IEnumerable<Person> GetPassengersInFlight(string FlightNumber);
-        IEnumerable<Person> GetPassengersByGender(GenderType gender);
+        IEnumerable<Person> GetPassengersByGender(GenderType Gender);
+
+        Booking Create(string FlightNumber, Person Person);
 
     }
 }

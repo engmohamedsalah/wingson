@@ -26,5 +26,9 @@ namespace WingsOn.BLL
         {
             return _flightRepository.Get(Id);
         }
+        public Flight GetByFlightNumber(string flightNumber)
+        {
+            return _flightRepository.SingleOrDefault(a=>a.Number==flightNumber);
+        }
     }
 }

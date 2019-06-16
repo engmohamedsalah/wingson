@@ -9,23 +9,26 @@ namespace WingsOn.Dal
 
     public class BookingRepositoryExtension : BookingRepository
     {
-        public IQueryable<Person> GetPassengersInFlight(string flightNumber) 
-        {
+       
+        //public IQueryable<Person> GetPassengersInFlight(string flightNumber)
+        //{
 
-            var passengers = from rep in Repository
-                         where rep.Flight.Number == flightNumber
-                         select rep.Passengers;
+        //    var passengers = from rep in Repository
+        //                     where rep.Flight.Number == flightNumber
+        //                     select rep.Passengers;
 
-            return passengers.SelectMany(a=>a).AsQueryable();
-        }
-        public IQueryable<Person> GetPassengersByGender(GenderType gender)
-        {
+        //    return passengers.SelectMany(a => a).AsQueryable();
+        //}
+        //public IQueryable<Person> GetPassengersByGender(GenderType gender)
+        //{
 
-            var passengers = Repository.SelectMany(a => a.Passengers)
-                                        .Where(a=>a.Gender == gender).Distinct();
+        //    var passengers = Repository.SelectMany(a => a.Passengers)
+        //                                .Where(a => a.Gender == gender).Distinct();
 
-                             
-            return passengers.AsQueryable();
-        }
+
+        //    return passengers.AsQueryable();
+        //}
+        
+       
     }
 }

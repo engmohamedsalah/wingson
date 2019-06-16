@@ -47,6 +47,7 @@
     <Compile Include="PersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BookingRepositoryExtension.cs" />
+    <Compile Include="RepositoryBaseExtension.cs" />
     <Compile Include="RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
