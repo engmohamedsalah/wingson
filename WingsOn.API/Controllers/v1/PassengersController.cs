@@ -1,39 +1,57 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.Web.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WingsOn.API.ViewModel;
+using WingsOn.BLL;
+using WingsOn.Domain;
 
 namespace WingsOn.API.Controllers.v1
 {
-    public class PassengersController : BaseAPIController
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/Flights")]
+    public class PassengersController : ApiController
     {
-        // GET: api/Passenger
-        public IEnumerable<string> Get()
+        
+        IFlightService _flightService;
+        IBookingService _bookingService;
+
+        public PassengersController(IFlightService flightService, IBookingService bookingService)
         {
-            return new string[] { "value1", "value2" };
+            _flightService = flightService;
+            _bookingService = bookingService;
         }
 
-        // GET: api/Passenger/5
-        public string Get(int id)
+
+        // GET: api/Flight/5/Passengers
+        [Route("api/v{version:apiVersion}/Flights/{flightNumber}/Passengers")]
+
+        public IHttpActionResult Get(string flightNumber)
         {
-            return "value";
+           var passengers= _bookingService.GetPassengersInFlight(flightNumber);
+            var result = Mapper.Map<List<PersonViewModel>>(passengers);
+            return Ok(result);
+            
+        }
+        [Route("api/v{version:apiVersion}/Flights/Passengers/gender")]
+        public IHttpActionResult Get(GenderType gender)
+        {
+            var passengers = _bookingService.GetPassengersByGender(gender);
+            var result = Mapper.Map<List<PersonViewModel>>(passengers);
+            return Ok(result);
+
+        }
+        public IHttpActionResult Get(int id)
+        {
+            _flightService.GetById(id);
+
+            return null;
         }
 
-        // POST: api/Passenger
-        public void Post([FromBody]string value)
-        {
-        }
 
-        // PUT: api/Passenger/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Passenger/5
-        public void Delete(int id)
-        {
-        }
     }
 }

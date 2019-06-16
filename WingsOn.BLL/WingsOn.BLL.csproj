@@ -41,9 +41,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IService.cs" />
+    <Compile Include="AirportService.cs" />
+    <Compile Include="FlightService.cs" />
+    <Compile Include="AirlineService.cs" />
+    <Compile Include="EntityService.cs" />
+    <Compile Include="Helper\Utility.cs" />
+    <Compile Include="Interfaces\IAirportService.cs" />
+    <Compile Include="Interfaces\IFlightService.cs" />
+    <Compile Include="Interfaces\IAirlineService.cs" />
+    <Compile Include="Interfaces\IBookingService.cs" />
+    <Compile Include="Interfaces\IPersonService.cs" />
+    <Compile Include="Interfaces\IEntityService.cs" />
+    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="BookingService.cs" />
     <Compile Include="PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WingsOn.Dal\WingsOn.Dal.csproj">
+      <Project>{2B68B6A5-72F1-4DD8-849C-B0A7365A0480}</Project>
+      <Name>WingsOn.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WingsOn.Domain\WingsOn.Domain.csproj">
+      <Project>{F1792ED2-360F-4864-8A3D-3FAAE3E9FC4B}</Project>
+      <Name>WingsOn.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

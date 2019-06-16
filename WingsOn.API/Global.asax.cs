@@ -25,8 +25,11 @@ namespace WingsOn.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            //automapper registration
+            AutoMapperConfig.Register();
 
-           
+
+
         }
     }
 }
