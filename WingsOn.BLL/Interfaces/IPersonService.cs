@@ -6,7 +6,6 @@ namespace WingsOn.BLL
     {
 
         Person GetById(int Id);
-
         Person UpdatePersonPatially(int id,Person person);
     }
 }

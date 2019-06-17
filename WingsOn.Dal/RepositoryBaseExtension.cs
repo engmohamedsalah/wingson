@@ -4,7 +4,6 @@ using System.Linq;
 using WingsOn.Domain;
 
 
-
 namespace WingsOn.Dal
 {
     public static class RepositoryBaseExtension
@@ -42,13 +41,7 @@ namespace WingsOn.Dal
             }
             return newObj;
         }
-
-        public static IQueryable<T> GetAll<T>(this RepositoryBase<T> repository, int page, int pageCount) where T : DomainObject
-        {
-
-            var pageSize = (page - 1) * pageCount;
-            return repository.GetAll().Skip(pageSize).Take(pageCount).AsQueryable();
-        }
+       
     }
    
 }

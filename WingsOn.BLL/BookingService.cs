@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using WingsOn.BLL.ExceptionHandling;
+using WingsOn.BLL.Helper;
 using WingsOn.Dal;
 using WingsOn.Domain;
 
@@ -102,8 +104,16 @@ namespace WingsOn.BLL
             var passengers = _bookingRepository.GetAll().SelectMany(a => a.Passengers)
                                       .Where(a => a.Gender == gender).Distinct();
 
-
+            
             return passengers.AsQueryable();
+        }
+        public IEnumerable<Person> GetPassengersByGender(GenderType gender, string sidx, string sord, int page, int pageCount)
+        {
+            var passengers = _bookingRepository.GetAll()
+                              .SelectMany(a => a.Passengers.Where(b => b.Gender == gender))
+                             .GetSortedPagedData(sidx, sord, page, pageCount)
+                              ;
+            return passengers;
         }
         /// <summary>
         /// Gets the passengers in flight.

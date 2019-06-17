@@ -33,6 +33,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +52,7 @@
     <Compile Include="AirlineService.cs" />
     <Compile Include="EntityService.cs" />
     <Compile Include="Helper\Checker.cs" />
+    <Compile Include="Helper\IEnumerableExtension.cs" />
     <Compile Include="Interfaces\IAirportService.cs" />
     <Compile Include="Interfaces\IFlightService.cs" />
     <Compile Include="Interfaces\IAirlineService.cs" />
@@ -69,6 +73,9 @@
       <Project>{F1792ED2-360F-4864-8A3D-3FAAE3E9FC4B}</Project>
       <Name>WingsOn.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
