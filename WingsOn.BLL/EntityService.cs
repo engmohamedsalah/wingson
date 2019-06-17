@@ -9,6 +9,11 @@ using WingsOn.Domain;
 
 namespace WingsOn.BLL
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <seealso cref="WingsOn.BLL.IEntityService{T}" />
     public abstract class EntityService<T> : IEntityService<T> where T : DomainObject
     {
 
@@ -20,7 +25,11 @@ namespace WingsOn.BLL
             _repository = repository;
         }
 
-
+        /// <summary>
+        /// Creates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <exception cref="ArgumentNullException">entity</exception>
         public virtual void Create(T entity)
         {
             if (entity == null)
@@ -31,15 +40,21 @@ namespace WingsOn.BLL
            
         }
 
-
+        /// <summary>
+        /// Updates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <exception cref="ArgumentNullException">entity</exception>
         public virtual void Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
             _repository.Save(entity);
 
         }
-        
-
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         public virtual IEnumerable<T> GetAll()
         {
             return _repository.GetAll();

@@ -21,7 +21,11 @@ namespace WingsOn.BLL
         }
 
 
-
+        /// <summary>
+        /// Gets the by identifier.
+        /// </summary>
+        /// <param name="Id">The identifier.</param>
+        /// <returns></returns>
         public Flight GetById(int Id)
         {
             return _flightRepository.Get(Id);

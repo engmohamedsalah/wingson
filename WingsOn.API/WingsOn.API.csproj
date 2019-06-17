@@ -202,6 +202,7 @@
     <Compile Include="Controllers\v1\PassengersController.cs" />
     <Compile Include="Controllers\v1\HomeController.cs" />
     <Compile Include="Controllers\v1\PersonsController.cs" />
+    <Compile Include="ExceptionHandler\FilterException\EmailValidException.cs" />
     <Compile Include="ExceptionHandler\HttpRequestMessageExtensions.cs" />
     <Compile Include="ExceptionHandler\FilterException\IdNotValidException.cs" />
     <Compile Include="ExceptionHandler\LogMessage.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BookingViewModel.cs" />
     <Compile Include="ViewModel\NewBookingViewModel.cs" />
+    <Compile Include="ViewModel\PersonPatchViewModel.cs" />
     <Compile Include="ViewModel\PersonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

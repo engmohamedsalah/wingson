@@ -11,16 +11,26 @@ using WingsOn.API.ExceptionHandler.FilterException;
 using WingsOn.API.ViewModel;
 using WingsOn.BLL;
 using WingsOn.BLL.ExceptionHandling;
+using WingsOn.Domain;
 
 namespace WingsOn.API.Controllers.v1
 {
+    /// <summary>
+    /// this controller resposibple for API related to
+    /// 1- Get Person with ID
+    /// 2- update Person Email
+    /// </summary>
+    /// <seealso cref="WingsOn.API.Controllers.BaseAPIController" />
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/Persons")]
     public class PersonsController : BaseAPIController
     {
 
         IPersonService _personService;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonsController"/> class.
+        /// </summary>
+        /// <param name="personService">The person service.</param>
         public PersonsController(IPersonService personService)
         {
             _personService = personService;
@@ -61,16 +71,20 @@ namespace WingsOn.API.Controllers.v1
         /// </summary>
         [HttpPatch()]
             
-        public IHttpActionResult Patch(int id, string email)
+        public IHttpActionResult Patch(int id, [FromBody]PersonPatchViewModel updatedPerson)
         {
             try
             {
-                _personService.UpdatePersonEmail(id, email);
+                _personService.UpdatePersonPatially(id, Mapper.Map<Person>(updatedPerson) );
             }
             catch (ObjectNotExistWithIdException)
             {
                 // throw new IdNotValidException();
                 throw new IdOrNumberNotValidException();
+            }
+            catch (InValidEmailException)
+            {
+                throw new EmailValidException();
             }
             catch (Exception ex)
             {
@@ -81,9 +95,5 @@ namespace WingsOn.API.Controllers.v1
             return Ok(person);
         }
 
-        // DELETE: api/Person/5
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

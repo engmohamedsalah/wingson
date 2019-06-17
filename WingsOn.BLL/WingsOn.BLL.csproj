@@ -48,7 +48,7 @@
     <Compile Include="FlightService.cs" />
     <Compile Include="AirlineService.cs" />
     <Compile Include="EntityService.cs" />
-    <Compile Include="Helper\Utility.cs" />
+    <Compile Include="Helper\Checker.cs" />
     <Compile Include="Interfaces\IAirportService.cs" />
     <Compile Include="Interfaces\IFlightService.cs" />
     <Compile Include="Interfaces\IAirlineService.cs" />

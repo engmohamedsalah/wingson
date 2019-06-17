@@ -9,9 +9,18 @@ using System.Threading.Tasks;
 /// </summary>
 namespace WingsOn.BLL.Helper
 {
-    /// <summary></summary>
-    public class Validation
+    /// <summary>
+    /// this is check helper class
+    /// </summary>
+    public class Checker
     {
+        /// <summary>
+        /// Determines whether [is valid email] [the specified email].
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>
+        ///   <c>true</c> if [is valid email] [the specified email]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsValidEmail(string email)
         {
             //check if the email string is null or empty

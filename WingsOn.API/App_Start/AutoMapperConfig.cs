@@ -17,6 +17,8 @@ namespace WingsOn.API
             {
                 //mapping between Person and PersonViewModel
                 cfg.CreateMap<Person, PersonViewModel>();
+                cfg.CreateMap<PersonPatchViewModel, Person>();
+
                 cfg.CreateMap<Booking,BookingViewModel> ()
                 .ForMember(a => a.Id, b => b.MapFrom(c => c.Id))
                 .ForMember(a => a.BookingDate , b => b.MapFrom(c => c.DateBooking))
