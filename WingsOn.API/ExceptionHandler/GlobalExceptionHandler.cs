@@ -9,7 +9,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Results;
-
+using WingsOn.API.Constants;
+using WingsOn.API.Helper;
 namespace WingsOn.API.ExceptionHandler
 {
     public class GlobalExceptionHandler : System.Web.Http.ExceptionHandling.ExceptionHandler
@@ -21,11 +22,12 @@ namespace WingsOn.API.ExceptionHandler
 
             var metadata = new APIErrorData
             {
+                Code = APIErrorCodes.GLOGBAL_ERR_CODE,
                 Message = "An error occurred! Please use the ticket ID to contact our support",
                 DateTime = DateTime.Now,
                 RequestUri = context.Request.RequestUri,
                 ErrorId = id
-
+                
             };
 
             var response = context.Request.CreateResponse(HttpStatusCode.InternalServerError, metadata);
@@ -33,11 +35,5 @@ namespace WingsOn.API.ExceptionHandler
         }
     }
 
-    internal class APIErrorData
-    {
-        public string Message { get; set; }
-        public DateTime DateTime { get; set; }
-        public Uri RequestUri { get; set; }
-        public Guid ErrorId { get; set; }
-    }
+    
 }

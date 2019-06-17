@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
 using WingsOn.API.ExceptionHandler;
+using WingsOn.API.ExceptionHandler.FilterException;
 
 namespace WingsOn.API
 {
@@ -32,6 +33,10 @@ namespace WingsOn.API
 
             //for general exception
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+
+
+            //add custom validation
+            config.Filters.Add(new CustomExceptionHandlingAttribute());
 
 
 

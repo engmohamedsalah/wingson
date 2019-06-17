@@ -7,6 +7,6 @@ namespace WingsOn.BLL
 
         Person GetById(int Id);
 
-        bool UpdatePersonEmail(int id,string email);
+        Person UpdatePersonEmail(int id,string email);
     }
 }

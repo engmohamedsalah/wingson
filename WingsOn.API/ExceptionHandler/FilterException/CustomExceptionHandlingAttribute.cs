@@ -9,19 +9,22 @@ using System.Web.Http.Filters;
 
 namespace WingsOn.API.ExceptionHandler.FilterException
 {
-    public class IdNotValidExceptionFilterAttribute : ExceptionFilterAttribute
+    public class CustomExceptionHandlingAttribute : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext context)
         {
-            if (context.Exception is IdNotValidException)
+            
+            if (context.Exception is IdOrNumberNotValidException)
             {
                 var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
                 {
                     Content = new StringContent(context.Exception.Message),
-                    ReasonPhrase = "ItemNotFound",
+                    ReasonPhrase = "Object is not found with an Id/Number which passed via request paramenters",
                     StatusCode = HttpStatusCode.NotFound,
                 };
-                throw new HttpResponseException(resp);
+                context.Response = context.Request.CreateResponse(HttpStatusCode.InternalServerError,resp);
+
+                base.OnException(context);
             }
         }
     }

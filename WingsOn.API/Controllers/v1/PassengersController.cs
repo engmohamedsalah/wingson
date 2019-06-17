@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.Web.Http;
+using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,6 +16,7 @@ namespace WingsOn.API.Controllers.v1
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/Flights")]
+   
     public class PassengersController : ApiController
     {
         
@@ -29,10 +32,15 @@ namespace WingsOn.API.Controllers.v1
 
         // GET: api/Flight/5/Passengers
         [Route("api/v{version:apiVersion}/Flights/{flightNumber}/Passengers")]
+        [SwaggerOperation("Get Passengers in a specific flight")]
 
         public IHttpActionResult Get(string flightNumber)
         {
-           var passengers= _bookingService.GetPassengersInFlight(flightNumber);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var passengers= _bookingService.GetPassengersInFlight(flightNumber);
             var result = Mapper.Map<List<PersonViewModel>>(passengers);
             return Ok(result);
             
@@ -40,17 +48,21 @@ namespace WingsOn.API.Controllers.v1
         [Route("api/v{version:apiVersion}/Flights/Passengers/gender")]
         public IHttpActionResult Get(GenderType gender)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var passengers = _bookingService.GetPassengersByGender(gender);
             var result = Mapper.Map<List<PersonViewModel>>(passengers);
             return Ok(result);
 
         }
-        public IHttpActionResult Get(int id)
-        {
-            _flightService.GetById(id);
+        //public IHttpActionResult Get(int id)
+        //{
+        //    _flightService.GetById(id);
 
-            return null;
-        }
+        //    return null;
+        //}
 
 
     }

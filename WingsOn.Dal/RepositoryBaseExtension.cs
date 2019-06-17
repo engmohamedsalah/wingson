@@ -30,12 +30,17 @@ namespace WingsOn.Dal
             // critical section
             lock (lockObj)
             {
-                int newId = repository.GetAll().Max(a=>a.Id) + 1;
-                newObj.Id = newId;
+               
+                if (newObj.Id == 0)
+                {
+                    int newId = repository.GetAll().Max(a => a.Id) + 1;
+                    newObj.Id = newId;
+                }
                 repository.Save(newObj);
-
             }
             return newObj;
         }
+       
     }
+   
 }

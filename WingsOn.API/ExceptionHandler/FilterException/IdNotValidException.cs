@@ -5,10 +5,10 @@ using System.Web;
 
 namespace WingsOn.API.ExceptionHandler.FilterException
 {
-    public class IdNotValidException : Exception
+    public class IdOrNumberNotValidException : Exception
     {
-        public IdNotValidException() : base() { }
-        public IdNotValidException(string message) : base(message) { }
-        public IdNotValidException(string message, Exception ex) : base(message, ex) { }
+        public IdOrNumberNotValidException() : base() { }
+        public IdOrNumberNotValidException(string message) : base(message) { }
+        public IdOrNumberNotValidException(string message, Exception ex) : base(message, ex) { }
     }
 }

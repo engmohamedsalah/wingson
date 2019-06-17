@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WingsOn.BLL.ExceptionHandling;
 using WingsOn.BLL.Helper;
 using WingsOn.Dal;
 using WingsOn.Domain;
@@ -27,24 +28,24 @@ namespace WingsOn.BLL
             return _personRepository.Get(Id);
         }
 
-        public bool UpdatePersonEmail(int id,string email)
+        public Person UpdatePersonEmail(int id, string email)
         {
             //check if the email is valid
             if (!Validation.IsValidEmail(email))
 
-                throw new Exception("InValid Email");
+                throw new InValidEmailException(nameof(email));
 
             //get the person
             var person = _personRepository.Get(id);
             if (person == null)
-                throw new Exception("InValid Email");
+                throw new ObjectNotExistWithIdException("Not Exist Person");
 
-            else
-                person.Email = email;
+
+            person.Email = email;
 
             _personRepository.Save(person);
 
-            return false;
+            return person;
 
         }
     }

@@ -17,7 +17,15 @@ namespace WingsOn.API
             {
                 //mapping between Person and PersonViewModel
                 cfg.CreateMap<Person, PersonViewModel>();
-               
+                cfg.CreateMap<Booking,BookingViewModel> ()
+                .ForMember(a => a.Id, b => b.MapFrom(c => c.Id))
+                .ForMember(a => a.BookingDate , b => b.MapFrom(c => c.DateBooking))
+                
+                .ForMember(a => a.FlightId , b => b.MapFrom(c => c.Flight.Id))
+                .ForMember(a => a.FlightNumber , b => b.MapFrom(c => c.Flight.Number))
+                .ForMember(a => a.PersonId , b => b.MapFrom(c => c.Customer.Id))
+                .ForMember(a => a.Person , b => b.MapFrom(c => c.Customer));
+
             });
         }
     }

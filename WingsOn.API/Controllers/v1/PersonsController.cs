@@ -10,6 +10,7 @@ using System.Web.Http.ExceptionHandling;
 using WingsOn.API.ExceptionHandler.FilterException;
 using WingsOn.API.ViewModel;
 using WingsOn.BLL;
+using WingsOn.BLL.ExceptionHandling;
 
 namespace WingsOn.API.Controllers.v1
 {
@@ -31,15 +32,15 @@ namespace WingsOn.API.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         // GET: api/Person/5
-        [IdNotValidExceptionFilter]
+        [CustomExceptionHandling]
         public IHttpActionResult Get(int id)
         {
             //Validation of for the id to 
             //check if it greater than 
             if(id<=0)
             {
-                // throw new ArgumentOutOfRangeException();
-                throw new IdNotValidException("This is a custom exception."); ;
+                // throw new IdNotValidException();
+                throw new IdOrNumberNotValidException();
             }
             // get required person with Id
             var person = _personService.GetById(id);
@@ -54,7 +55,7 @@ namespace WingsOn.API.Controllers.v1
            
         }
         
-
+         
         /// <summary>
         /// Endpoint that updates a person’s email address
         /// </summary>
@@ -65,6 +66,11 @@ namespace WingsOn.API.Controllers.v1
             try
             {
                 _personService.UpdatePersonEmail(id, email);
+            }
+            catch (ObjectNotExistWithIdException)
+            {
+                // throw new IdNotValidException();
+                throw new IdOrNumberNotValidException();
             }
             catch (Exception ex)
             {

@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirportService.cs" />
+    <Compile Include="ExceptionHandling\InValidEmailException.cs" />
+    <Compile Include="ExceptionHandling\ObjectNotExistWithIdException.cs" />
+    <Compile Include="ExceptionHandling\FlightNotExistException.cs" />
     <Compile Include="FlightService.cs" />
     <Compile Include="AirlineService.cs" />
     <Compile Include="EntityService.cs" />

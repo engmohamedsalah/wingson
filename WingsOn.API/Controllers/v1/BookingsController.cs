@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WingsOn.API.ExceptionHandler.FilterException;
 using WingsOn.API.ViewModel;
 using WingsOn.BLL;
+using WingsOn.BLL.ExceptionHandling;
 using WingsOn.Domain;
 
 namespace WingsOn.API.Controllers
@@ -25,19 +27,28 @@ namespace WingsOn.API.Controllers
             _bookingService = bookingService;
         }
 
-        // POST: api/Booking
-        public IHttpActionResult Post([FromBody]BookingViewModel booking)
+        public IHttpActionResult Post([FromBody]NewBookingViewModel booking)
         {
-            //create new Booking
-            var bookingObj = _bookingService.Create(booking.FlightNumber, Mapper.Map<Person>(booking.Person));
-            //
+            try
+            {
+                //create new Booking
+                var bookingObj = _bookingService.Create(booking.FlightNumber, Mapper.Map<Person>(booking.Person));
 
-            var result = Mapper.Map<BookingViewModel>(bookingObj);
+                var result = Mapper.Map<BookingViewModel>(bookingObj);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (FligtNotExistException)
+            {
+                // throw new IdNotValidException();
+                throw new IdOrNumberNotValidException();
+            }
+            catch
+            {
+                throw;
+            }
+
         }
 
-        // PUT: api/Booking/5
-       
     }
 }
