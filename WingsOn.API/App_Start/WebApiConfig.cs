@@ -45,7 +45,7 @@ namespace WingsOn.API
             // Web API routes
             // config.MapHttpAttributeRoutes();
             ////////////////////////////////
-            config.Filters.Add(new AuthorizeAttribute());
+            //config.Filters.Add(new AuthorizeAttribute());
 
 
 
