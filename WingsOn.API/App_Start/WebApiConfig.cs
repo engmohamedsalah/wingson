@@ -1,7 +1,9 @@
 ﻿using Microsoft.Web.Http.Routing;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
@@ -33,18 +35,17 @@ namespace WingsOn.API
 
             //for general exception
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
-
+    
 
             //add custom validation
-            config.Filters.Add(new CustomExceptionHandlingAttribute());
-
-
-
+           config.Filters.Add(new CustomExceptionHandlingAttribute());
+            
             // Web API configuration and services
 
             // Web API routes
             // config.MapHttpAttributeRoutes();
             ////////////////////////////////
+            config.Filters.Add(new AuthorizeAttribute());
 
 
 
@@ -54,6 +55,8 @@ namespace WingsOn.API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );*/
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
 
         }

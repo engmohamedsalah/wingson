@@ -28,7 +28,7 @@ namespace WingsOn.API
             //automapper registration
             AutoMapperConfig.Register();
 
-
+           // SwaggerConfig.Register();
 
         }
     }

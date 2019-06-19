@@ -199,12 +199,14 @@
     <Compile Include="Constants\DefaultConstants.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\v1\BookingsController.cs" />
+    <Compile Include="Controllers\v1\DefaultController.cs" />
     <Compile Include="Controllers\v1\PassengersController.cs" />
     <Compile Include="Controllers\v1\HomeController.cs" />
     <Compile Include="Controllers\v1\PersonsController.cs" />
     <Compile Include="ExceptionHandler\FilterException\EmailValidException.cs" />
-    <Compile Include="ExceptionHandler\HttpRequestMessageExtensions.cs" />
     <Compile Include="ExceptionHandler\FilterException\IdNotValidException.cs" />
+    <Compile Include="ExceptionHandler\HttpRequestMessageExtensions.cs" />
+    <Compile Include="ExceptionHandler\FilterException\IdOrNumberNotValidException.cs" />
     <Compile Include="ExceptionHandler\LogMessage.cs" />
     <Compile Include="ExceptionHandler\UnhandledExceptionLogger.cs" />
     <Compile Include="ExceptionHandler\GlobalExceptionHandler.cs" />
@@ -214,6 +216,8 @@
     </Compile>
     <Compile Include="Helper\APIErrorData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AuthTokenOperation.cs" />
+    <Compile Include="Security\AddAuthorizationHeaderParameterOperationFilter.cs" />
     <Compile Include="ViewModel\BookingViewModel.cs" />
     <Compile Include="ViewModel\NewBookingViewModel.cs" />
     <Compile Include="ViewModel\PersonPatchViewModel.cs" />

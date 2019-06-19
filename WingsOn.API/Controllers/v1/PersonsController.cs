@@ -22,7 +22,8 @@ namespace WingsOn.API.Controllers.v1
     /// </summary>
     /// <seealso cref="WingsOn.API.Controllers.BaseAPIController" />
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/Persons")]
+    [RoutePrefix("api/v{version:apiVersion}/Persons")]
+  
     public class PersonsController : BaseAPIController
     {
 
@@ -42,21 +43,24 @@ namespace WingsOn.API.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         // GET: api/Person/5
+        
         [CustomExceptionHandling]
+        [Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
             //Validation of for the id to 
             //check if it greater than 
             if(id<=0)
             {
-                // throw new IdNotValidException();
-                throw new IdOrNumberNotValidException();
+                 throw new IdNotValidException();
+               
             }
             // get required person with Id
             var person = _personService.GetById(id);
             if (person == null)
             {
-                return NotFound();
+                throw new IdOrNumberNotValidException();
+                //return NotFound();
             }
 
             var result = Mapper.Map<PersonViewModel>(person);
@@ -70,12 +74,14 @@ namespace WingsOn.API.Controllers.v1
         /// Endpoint that updates a person’s email address
         /// </summary>
         [HttpPatch()]
-            
+        [Route("{id:int}")]
         public IHttpActionResult Patch(int id, [FromBody]PersonPatchViewModel updatedPerson)
         {
             try
             {
                 _personService.UpdatePersonPatially(id, Mapper.Map<Person>(updatedPerson) );
+                var result = Mapper.Map<PersonViewModel>(_personService.GetById(id));
+                return Ok(result);
             }
             catch (ObjectNotExistWithIdException)
             {
@@ -91,8 +97,8 @@ namespace WingsOn.API.Controllers.v1
                 throw ex;
             }
             
-            var person = _personService.GetById(id);
-            return Ok(person);
+          
+            
         }
 
     }

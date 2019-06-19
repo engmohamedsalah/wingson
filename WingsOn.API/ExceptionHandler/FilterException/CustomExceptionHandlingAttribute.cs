@@ -46,6 +46,18 @@ namespace WingsOn.API.ExceptionHandler.FilterException
 
                 base.OnException(context);
             }
+            else if (context.Exception is IdNotValidException)
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(context.Exception.Message),
+                    ReasonPhrase = "Id should be integer greater than 0",
+                    StatusCode = HttpStatusCode.BadRequest,
+                };
+                context.Response = context.Request.CreateResponse(HttpStatusCode.InternalServerError, resp);
+
+                base.OnException(context);
+            }
         }
     }
 }

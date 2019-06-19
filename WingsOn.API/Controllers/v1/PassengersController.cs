@@ -20,6 +20,7 @@ namespace WingsOn.API.Controllers.v1
     /// <seealso cref="System.Web.Http.ApiController" />
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/Flights")]
+    //[Authorize]
     public class PassengersController : ApiController
     {
         
@@ -64,7 +65,7 @@ namespace WingsOn.API.Controllers.v1
         /// <param name="sidx">The sidx.</param>
         /// <param name="sord">The sord.</param>
         /// <returns></returns>
-        [Route("api/v{version:apiVersion}/Flights/Passengers/gender")]
+        [Route("api/v{version:apiVersion}/Flights/Passengers/{gende}")]
         public IHttpActionResult Get(GenderType gender, [FromUri] int page = 1, [FromUri] int pageCount = 2,
             [FromUri] string sidx = "Id", [FromUri] string sord = "asc")
         {

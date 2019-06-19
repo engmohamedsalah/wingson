@@ -1,4 +1,5 @@
 ﻿using System;
+using WingsOn.Domain;
 
 namespace WingsOn.API.ViewModel
 {
@@ -8,7 +9,7 @@ namespace WingsOn.API.ViewModel
 
         public DateTime DateBirth { get; set; }
 
-        public int Gender { get; set; }
+        public GenderType Gender { get; set; }
 
         public string Address { get; set; }
 
