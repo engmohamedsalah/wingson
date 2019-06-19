@@ -8,8 +8,15 @@ using WingsOn.Domain;
 
 namespace WingsOn.API
 {
+    /// <summary>
+    /// this class contains the required mapping between the 
+    /// view and view Models
+    /// </summary>
     public class AutoMapperConfig
     {
+        /// <summary>
+        /// Registers this instance.
+        /// </summary>
         public static void Register()
         {
             //define mapping objects

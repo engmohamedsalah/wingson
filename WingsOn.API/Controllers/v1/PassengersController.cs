@@ -38,7 +38,7 @@ namespace WingsOn.API.Controllers.v1
         }
 
         /// <summary>
-        /// 
+        /// API return All passengers in specific flight
         /// </summary>
         /// <param name="flightNumber"></param>
         /// <returns></returns>

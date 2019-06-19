@@ -199,7 +199,6 @@
     <Compile Include="Constants\DefaultConstants.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\v1\BookingsController.cs" />
-    <Compile Include="Controllers\v1\DefaultController.cs" />
     <Compile Include="Controllers\v1\PassengersController.cs" />
     <Compile Include="Controllers\v1\HomeController.cs" />
     <Compile Include="Controllers\v1\PersonsController.cs" />

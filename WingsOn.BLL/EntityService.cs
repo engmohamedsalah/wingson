@@ -10,7 +10,7 @@ using System.Linq.Dynamic;
 namespace WingsOn.BLL
 {
     /// <summary>
-    /// 
+    /// Entity Service base abstract class 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <seealso cref="WingsOn.BLL.IEntityService{T}" />
@@ -60,19 +60,6 @@ namespace WingsOn.BLL
             return _repository.GetAll();
         }
 
-        /// <summary>
-        /// Gets the specified sidx.
-        /// </summary>
-        /// <param name="sidx">The sort index.</param>
-        /// <param name="sord">The sord direction.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageCount">The page count.</param>
-        /// <returns></returns>
-        //public virtual IQueryable<T> Get(string sidx, string sord, int page, int pageCount)
-        //{
-        //    var pageSize = (page - 1) * pageCount;
-        //    return _repository.GetAll().Skip(pageSize).Take(pageCount).AsQueryable()
-        //        .OrderBy(sidx + " " + sord).AsQueryable();
-        //}
+       
     }
 }

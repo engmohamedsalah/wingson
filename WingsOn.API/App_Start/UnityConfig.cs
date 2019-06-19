@@ -5,8 +5,14 @@ using WingsOn.BLL;
 
 namespace WingsOn.API
 {
+    /// <summary>
+    /// this is configuration for IOC
+    /// </summary>
     public static class UnityConfig
     {
+        /// <summary>
+        /// Registers the components. for the Business service
+        /// </summary>
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();

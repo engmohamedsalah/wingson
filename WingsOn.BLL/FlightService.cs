@@ -13,6 +13,10 @@ namespace WingsOn.BLL
 
         FlightRepository _flightRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlightService"/> class.
+        /// </summary>
+        /// <param name="flightRepository">The flight repository.</param>
         public FlightService(FlightRepository flightRepository)
             : base(flightRepository)
         {
@@ -30,6 +34,11 @@ namespace WingsOn.BLL
         {
             return _flightRepository.Get(Id);
         }
+        /// <summary>
+        /// Gets the by flight number.
+        /// </summary>
+        /// <param name="flightNumber">The flight number.</param>
+        /// <returns></returns>
         public Flight GetByFlightNumber(string flightNumber)
         {
             return _flightRepository.SingleOrDefault(a=>a.Number==flightNumber);

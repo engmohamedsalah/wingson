@@ -12,8 +12,15 @@ using WingsOn.API.ExceptionHandler.FilterException;
 
 namespace WingsOn.API
 {
+    /// <summary>
+    /// WebApi configuration 
+    /// </summary>
     public static class WebApiConfig
     {
+        /// <summary>
+        /// Registers the specified configuration.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
         public static void Register(HttpConfiguration config)
         {
 
@@ -40,23 +47,6 @@ namespace WingsOn.API
             //add custom validation
            config.Filters.Add(new CustomExceptionHandlingAttribute());
             
-            // Web API configuration and services
-
-            // Web API routes
-            // config.MapHttpAttributeRoutes();
-            ////////////////////////////////
-            //config.Filters.Add(new AuthorizeAttribute());
-
-
-
-            ////////////////////////////
-            /*config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );*/
-            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
-            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
 
         }
